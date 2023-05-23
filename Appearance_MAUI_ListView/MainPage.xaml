@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+             xmlns:local="clr-namespace:Appearance_MAUI_ListView"
+             x:Class="Appearance_MAUI_ListView.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:ContactInfoRepo />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="NormalTemplate">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"  Source="{Binding ContactImage}" HeightRequest="40" WidthRequest="40" HorizontalOptions="Start"/>
+                <StackLayout Grid.Column="1" >
+                    <Label Text="{Binding ContactName}" VerticalOptions="Center" FontSize="16"/>
+                    <Label  Text="{Binding ContactNumber}" VerticalOptions="Center" FontSize="12"/>
+                </StackLayout>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MissedCallTemplate">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"  Source="{Binding ContactImage}" HeightRequest="40" WidthRequest="40" HorizontalOptions="Start"/>
+                <StackLayout Grid.Column="1" >
+                    <Label Text="{Binding ContactName}" VerticalOptions="Center" FontSize="16"/>
+                    <Label  Text="{Binding ContactNumber}" TextColor="Red" VerticalOptions="Center" FontSize="12"/>
+                </StackLayout>
+            </Grid>
+        </DataTemplate>
+
+        <local:ContactInfoDataTemplateSelector x:Key="templateSelector"
+                                               NormalTemplate="{StaticResource NormalTemplate}"
+                                               MissedCallTemplate="{StaticResource MissedCallTemplate}" />
+
+        <local:IndexToColorConverter x:Key="IndexToColorConverter"/>
+        
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <syncfusion:SfListView x:Name="listView"  
+                               SelectionMode="None"
+                               ItemsSource="{Binding Contacts}" 
+                               ItemTemplate="{StaticResource templateSelector}">
+        </syncfusion:SfListView>
+    </ContentPage.Content>
+
+</ContentPage>
