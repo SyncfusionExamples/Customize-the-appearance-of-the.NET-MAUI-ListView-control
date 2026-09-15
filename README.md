@@ -3,7 +3,7 @@ This sample demonstrate how to customize the appearance of the .NET MAUI ListVie
 
 A quick-start example to help you how to customize the appearance of the .NET MAUI ListView control by using different templates.
 
-Watch the video: Coming soon...
+Watch the video: https://www.youtube.com/watch?v=qp4MglFU0q4&t=1s
 
 Documentation: https://help.syncfusion.com/maui/listview/viewappearance
 
